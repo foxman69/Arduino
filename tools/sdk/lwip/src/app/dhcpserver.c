@@ -125,7 +125,7 @@ static uint8_t* ICACHE_FLASH_ATTR add_msg_type(uint8_t *optptr, uint8_t type)
  * Add apple captive portal DHCP (RFC7710)
  */
 ///////////////////////////////////////////////////////////////////////////////////
-extern "C" uint8_t* __add_custom_offer_options(uint8_t *optptr)
+static uint8_t* __add_custom_offer_options(uint8_t *optptr)
 {
       *optptr++ = 114;
       *optptr++ = 19;
@@ -136,7 +136,6 @@ extern "C" uint8_t* __add_custom_offer_options(uint8_t *optptr)
 
     return optptr;
 }
-extern "C" uint8_t* add_custom_offer_options(uint8_t *optptr) __attribute__((weak, alias("__add_custom_offer_options")));
 ///////////////////////////////////////////////////////////////////////////////////
 /*
  * ��DHCP msg�ṹ������offerӦ������
@@ -244,7 +243,7 @@ static uint8_t* ICACHE_FLASH_ATTR add_offer_options(uint8_t *optptr)
         *optptr++ = 0x00;
         *optptr++ = 0x02;
 
-        optptr = add_custom_offer_options(optptr);
+        optptr = __add_custom_offer_options(optptr);
         return optptr;
 }
 ///////////////////////////////////////////////////////////////////////////////////
