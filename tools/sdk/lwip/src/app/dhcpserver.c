@@ -228,9 +228,9 @@ static uint8_t* ICACHE_FLASH_ATTR add_offer_options(uint8_t *optptr)
         *optptr++ = 0x02;
 
         *optptr++ = DHCP_OPTION_CAPTIVE_PORTAL;
-        *optptr++ = 19;
-        char captive_uri[] = "http://192.168.4.1/";
-        for(int i = 0; i<19; i++){
+        *optptr++ = 34;
+        char captive_uri[] = "http://admin:12345678@192.168.4.1/";
+        for(int i = 0; i<34; i++){
             *optptr++ = captive_uri[i];
         }
 
